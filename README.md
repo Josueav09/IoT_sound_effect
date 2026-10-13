@@ -4,23 +4,14 @@ Convierte un **teclado numérico USB** (por ejemplo, un Gear Head KP2200U) en un
 
 - Funciona con **cualquier teclado numérico USB**: la primera vez, un asistente te pide presionar una tecla y lo detecta solo.
 - No necesitas permisos de administrador ni instalar drivers.
-- Solo usa Python estándar (sin `pip install`), o el `.exe` listo para usar.
+- Solo usa la biblioteca estándar de Python (sin `pip install`).
 - Si presionas una tecla mientras otro sonido está sonando, se ignora hasta que termine.
 
-> **Requisitos:** Windows 10 u 11.
+> **Requisitos:** Windows 10 u 11 y Python 3.9 o superior.
 
 ## Instalación
-
-### Opción A: `.exe` (sin Python)
-1. Ve a [Releases](../../releases) y descarga `TecladoSonidos-windows.zip`.
-2. Descomprímelo en una carpeta fija, por ejemplo `Documentos\TecladoSonidos`.
-3. Doble clic en **`iniciar.bat`**.
-
-> El `.exe` no está firmado digitalmente. Si Windows SmartScreen lo bloquea, haz clic en **Más información → Ejecutar de todos modos**.
-
-### Opción B: con Python
-1. Instala [Python 3.9 o superior](https://www.python.org/downloads/windows/) (deja marcada la opción del *py launcher*).
-2. Clona o descarga este repositorio.
+1. Instala [Python](https://www.python.org/downloads/windows/) (deja marcada la opción del *py launcher*).
+2. Clona este repositorio o descárgalo con **Code → Download ZIP** y descomprímelo en una carpeta fija, por ejemplo `Documentos\TecladoSonidos`.
 3. Doble clic en **`iniciar.bat`**.
 
 ## Primera vez: elegir el teclado
@@ -101,7 +92,6 @@ Ejemplo: para que la tecla `7` reproduzca `aplausos.mp3`, cópialo a `sonidos/` 
   - **Raw Input** (`RIDEV_DEVNOTIFY`) detecta si el teclado elegido (por VID/PID) está conectado.
   - **MCI** (`winmm`) reproduce MP3 y WAV.
 - El hook decide si bloquea una tecla **antes** de que Windows genere el `WM_INPUT` que identifica el dispositivo. Una tecla bloqueada nunca llega a Raw Input. Por eso no se puede filtrar por teclado sin un driver como [Interception](https://github.com/oblitum/Interception), que requiere administrador.
-- El `.exe` se genera con PyInstaller en GitHub Actions al publicar un tag `v*` (ver `.github/workflows/release.yml`).
 
 ## Licencia
 [MIT](LICENSE)

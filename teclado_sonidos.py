@@ -27,10 +27,7 @@ from pathlib import Path
 
 # --------------------------------------------------------------------------- rutas
 
-if getattr(sys, "frozen", False):
-    BASE = Path(sys.executable).resolve().parent
-else:
-    BASE = Path(__file__).resolve().parent
+BASE = Path(__file__).resolve().parent
 CONFIG = BASE / "config.json"
 SONIDOS = BASE / "sonidos"
 LOG = BASE / "teclado_sonidos.log"
@@ -292,7 +289,7 @@ def guardar_config(vp, nombre):
 
 
 class Consola:
-    """Consola para el asistente; la crea si el proceso no tiene (pyw / .exe)."""
+    """Consola para el asistente; la crea si el proceso no tiene (pyw)."""
 
     def __init__(self):
         self.creada = False

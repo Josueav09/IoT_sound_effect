@@ -10,6 +10,3 @@ sonidos/*
 diagnostico.py
 diagnostico.log
 __pycache__/
-build/
-dist/
-*.spec
