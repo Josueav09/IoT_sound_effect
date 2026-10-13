@@ -232,6 +232,10 @@ def buscar_sonido(nombre):
     return None
 
 
+def hay_sonidos():
+    return SONIDOS.is_dir() and any(p.suffix.lower() in EXTENSIONES for p in SONIDOS.iterdir())
+
+
 def sonando():
     try:
         return mci("status snd mode") == "playing"
@@ -419,6 +423,15 @@ class App:
         guardar_config(vp, nombre)
         logging.info("Configurado teclado %s (VID %s PID %s)", nombre, *vp)
         print(f"\n  Guardado en {CONFIG.name}.")
+        if not hay_sonidos():
+            print("\n  La carpeta 'sonidos' no tiene audios. Pon ahi tus .mp3 con el nombre")
+            print("  de cada tecla (ver sonidos\\LEEME.txt).")
+            print("  Crear sonidos de prueba para probar ahora? [S/N] ", end="", flush=True)
+            r = tecla_consola().lower()
+            print(r)
+            if r == "s":
+                import generar_sonidos_prueba
+                generar_sonidos_prueba.generar(SONIDOS)
         print("  Con la luz de Num Lock encendida suena; apagada, funciona normal.")
         print("  La botonera queda funcionando en segundo plano.")
         if consola.creada:
@@ -477,6 +490,9 @@ class App:
     def botonera(self):
         self.vp, nombre, self.teclas = cargar_config()
         logging.info("Iniciando botonera para %s (VID %s PID %s)", nombre, *self.vp)
+        sin_archivo = sorted({n for n in self.teclas.values() if not buscar_sonido(n)})
+        if sin_archivo:
+            logging.info("Teclas sin sonido en %s: %s", SONIDOS, ", ".join(sin_archivo))
         self.modo = "botonera"
         self.actualizar_conexion(inicio=True)
         self.hook = user32.SetWindowsHookExW(WH_KEYBOARD_LL, self._hookproc,

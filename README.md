@@ -35,6 +35,8 @@ Presiona cualquier tecla del teclado que quieres convertir en botonera...
 
 Presiona una tecla **del teclado numérico** y confirma con `S`. Se guarda en `config.json` y la botonera queda funcionando en segundo plano. Para cambiar de teclado, usa **`configurar.bat`**.
 
+El proyecto **no trae audios**: cada persona pone los suyos (ver [Poner tus sonidos](#poner-tus-sonidos)). Si la carpeta `sonidos/` está vacía, el asistente ofrece crear **sonidos de prueba** para comprobar que todo funciona.
+
 ## Uso
 
 | Archivo | Para qué sirve |
@@ -50,8 +52,8 @@ Presiona una tecla **del teclado numérico** y confirma con `S`. Se guarda en `c
 
 > ⚠️ **Importante:** Windows no informa de qué teclado viene una tecla antes de que el programa tenga que decidir si la bloquea. Por eso, mientras el teclado elegido esté conectado, **el bloque numérico de cualquier teclado con Num Lock encendido** (también el de la laptop o el del teclado principal) reproduce sonidos. Las letras y demás teclas funcionan normal. Para escribir números, usa la fila de números de arriba o `detener.bat`.
 
-## Poner tus propios sonidos
-Copia tus archivos en la carpeta **`sonidos/`** con el **nombre de la tecla**. El programa los busca en cada pulsación, así que no hace falta reiniciarlo.
+## Poner tus sonidos
+Copia tus archivos en la carpeta **`sonidos/`** con el **nombre de la tecla**. El programa los busca en cada pulsación, así que no hace falta reiniciarlo. La misma guía está en `sonidos/LEEME.txt`.
 
 | Tecla | Nombre del archivo | Tecla | Nombre del archivo |
 |---|---|---|---|
@@ -60,12 +62,17 @@ Copia tus archivos en la carpeta **`sonidos/`** con el **nombre de la tecla**. E
 | `-` | `menos.mp3` | `1` `2` `3` | `1.mp3` `2.mp3` `3.mp3` |
 | `+` | `mas.mp3` | `0` | `0.mp3` |
 | `Enter` | `enter.mp3` | `000` | `000.mp3` |
-| `.` / `Del` | `punto.mp3` | Conectar / desconectar | `on.wav` / `off.wav` |
+| `.` / `Del` | `punto.mp3` | Conectar / desconectar (opcional) | `on.mp3` / `off.mp3` |
+
+Ejemplo: para que la tecla `7` reproduzca `aplausos.mp3`, cópialo a `sonidos/` y renómbralo a `7.mp3`.
 
 - Acepta `.mp3` y `.wav`. Si existen los dos con el mismo nombre, se usa el `.mp3`.
-- Una tecla sin archivo no hace nada.
-- Los `.wav` incluidos son sonidos de prueba. Para regenerarlos: `py generar_sonidos_prueba.py`.
-- Los `.mp3` están en `.gitignore` para no publicar por accidente audio con derechos de autor.
+- Una tecla sin archivo no hace nada, así que puedes borrar los que no uses. Al iniciar, `teclado_sonidos.log` lista las teclas que no tienen sonido.
+- Activa en el Explorador **Vista → Mostrar → Extensiones de nombre de archivo** para no terminar con nombres como `7.mp3.mp3`.
+- Mientras un sonido suena, las demás teclas se ignoran, así que conviene usar audios cortos (1–5 s).
+- Sonidos de prueba: `py generar_sonidos_prueba.py` crea un `.wav` por tecla.
+- Todo el contenido de `sonidos/` (menos `LEEME.txt`) está en `.gitignore`, para no publicar por accidente audio con derechos de autor.
+- Para usar otros nombres de archivo, edita `teclas` en `config.json` (por ejemplo, `"0x47": "aplausos"` hace que la tecla 7 busque `aplausos.mp3`).
 
 ### Notas sobre algunas teclas
 - **`000`**: el teclado envía tres "0" seguidos. El programa lo detecta y reproduce `000.mp3`.

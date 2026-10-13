@@ -1,0 +1,33 @@
+CARPETA DE SONIDOS
+==================
+
+Pon aqui tus audios (.mp3 o .wav). El NOMBRE del archivo indica que tecla lo reproduce:
+
+  Tecla        Nombre del archivo
+  -----        ------------------
+  /            dividir.mp3
+  *            multiplicar.mp3
+  -            menos.mp3
+  +            mas.mp3
+  7 8 9        7.mp3   8.mp3   9.mp3
+  4 5 6        4.mp3   5.mp3   6.mp3
+  1 2 3        1.mp3   2.mp3   3.mp3
+  0            0.mp3
+  000          000.mp3
+  . (Del)      punto.mp3
+  Enter        enter.mp3
+
+  Al conectar el teclado      on.mp3   (opcional)
+  Al desconectar el teclado   off.mp3  (opcional)
+
+Ejemplo: para que la tecla 7 reproduzca "aplausos.mp3", copialo aqui y
+renombralo a "7.mp3". No hace falta reiniciar el programa.
+
+- Si hay un .mp3 y un .wav con el mismo nombre, se usa el .mp3.
+- Una tecla sin archivo no hace nada; puedes borrar los que no uses.
+- Activa en el Explorador "Vista > Mostrar > Extensiones de nombre de archivo"
+  para no terminar con nombres como "7.mp3.mp3".
+- Mientras un sonido suena, las demas teclas se ignoran: usa audios cortos.
+- Para probar sin tus audios: py generar_sonidos_prueba.py (crea .wav de prueba).
+- Avanzado: en config.json, la seccion "teclas" permite usar otros nombres
+  (por ejemplo "0x47": "aplausos" hace que la tecla 7 busque aplausos.mp3).

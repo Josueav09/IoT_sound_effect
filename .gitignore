@@ -2,8 +2,9 @@
 config.json
 *.log
 
-# Sonidos propios (pueden tener derechos de autor); los .wav de prueba si se suben
-sonidos/*.mp3
+# Los audios son de cada usuario (pueden tener derechos de autor); solo se sube la guia
+sonidos/*
+!sonidos/LEEME.txt
 
 # Herramientas de desarrollo
 diagnostico.py

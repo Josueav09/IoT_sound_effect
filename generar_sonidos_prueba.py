@@ -1,7 +1,8 @@
-"""Genera los sonidos de prueba (WAV) en la carpeta sonidos/.
+"""Genera sonidos de prueba (WAV) en la carpeta sonidos/, para comprobar que todo funciona.
 
 Solo usa la biblioteca estandar. Ejecutar:  py generar_sonidos_prueba.py
 Los archivos existentes con el mismo nombre se sobrescriben.
+El asistente de teclado_sonidos.py tambien lo ofrece si la carpeta esta vacia.
 """
 import math
 import random
@@ -67,11 +68,11 @@ def secuencia(*partes):
     return out
 
 
-def guardar(nombre, muestras):
+def guardar(carpeta, nombre, muestras):
     pico = max(1e-9, max(abs(m) for m in muestras))
     escala = 0.9 / pico  # todos al mismo volumen maximo
     datos = b"".join(struct.pack("<h", int(m * escala * 32767)) for m in muestras)
-    with wave.open(str(CARPETA / f"{nombre}.wav"), "wb") as w:
+    with wave.open(str(carpeta / f"{nombre}.wav"), "wb") as w:
         w.setnchannels(1)
         w.setsampwidth(2)
         w.setframerate(RATE)
@@ -140,13 +141,13 @@ SONIDOS = {
 }
 
 
-def main():
-    CARPETA.mkdir(exist_ok=True)
-    print(f"Generando sonidos de prueba en {CARPETA}")
+def generar(carpeta=CARPETA):
+    carpeta.mkdir(exist_ok=True)
+    print(f"Generando sonidos de prueba en {carpeta}")
     for nombre, generador in SONIDOS.items():
-        guardar(nombre, generador())
+        guardar(carpeta, nombre, generador())
     print("Listo.")
 
 
 if __name__ == "__main__":
-    main()
+    generar()
