@@ -1,0 +1,14 @@
+# Configuracion local de cada PC (la crea el asistente)
+config.json
+*.log
+
+# Sonidos propios (pueden tener derechos de autor); los .wav de prueba si se suben
+sonidos/*.mp3
+
+# Herramientas de desarrollo
+diagnostico.py
+diagnostico.log
+__pycache__/
+build/
+dist/
+*.spec

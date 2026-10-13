@@ -1,0 +1,26 @@
+{
+  "_ayuda": "Ejemplo. El asistente crea config.json automaticamente; no hace falta copiar este archivo. 'teclas' asigna scan code -> nombre del archivo en sonidos/ (0xE0xx = tecla extendida). Para que BS tambien suene agregue \"0x0E\": \"borrar\" (OJO: el Backspace de todos los teclados dejara de borrar con Num Lock encendido).",
+  "dispositivo": {
+    "vid": "04D9",
+    "pid": "1505",
+    "nombre": "Gear Head KP2200U"
+  },
+  "teclas": {
+    "0xE035": "dividir",
+    "0x37": "multiplicar",
+    "0x4A": "menos",
+    "0x4E": "mas",
+    "0x47": "7",
+    "0x48": "8",
+    "0x49": "9",
+    "0x4B": "4",
+    "0x4C": "5",
+    "0x4D": "6",
+    "0x4F": "1",
+    "0x50": "2",
+    "0x51": "3",
+    "0x52": "0",
+    "0x53": "punto",
+    "0xE01C": "enter"
+  }
+}
